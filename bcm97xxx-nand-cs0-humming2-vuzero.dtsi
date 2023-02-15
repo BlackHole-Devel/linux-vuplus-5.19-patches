@@ -1,0 +1,72 @@
+// SPDX-License-Identifier: GPL-2.0
+&nand {
+	nandcs@1 {
+		compatible = "brcm,nandcs";
+		reg = <0>;
+		nand-on-flash-bbt;
+
+		nand-ecc-mode = "hw";
+		nand-ecc-algo = "hamming";
+		nand-ecc-strength = <2>;
+		nand-ecc-step-size = <512>;
+		brcm,nand-oob-sector-size = <16>;
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+//to locate the right offset:
+// CFE> show devices
+
+//			flash0.cfe@0 {
+//				reg = <0x0 0x200000>;
+//			};
+
+			flash0.rootfs@1f00000 {
+				label = "rootfs";
+				reg = <0x2100000 0xdf00000>;
+			};
+
+			flash0.rootfsred@1f00000 {
+				label = "rootfs(redundant)";
+				reg = <0x2100000 0xdf00000>;
+			};
+
+			flash0.kernel@200000 {
+				label = "kernel";
+				reg = <0x200000 0x700000>;
+			};
+
+			flash0.macadr@900000 {
+				label = "mac";
+				reg = <0x900000 0x100000>;
+			};
+
+// hide partitions like on original
+//			flash0.nvram@a00000 {
+//				reg = <0xa00000 0x100000>;
+//			};
+
+//			flash0.virtual@b00000 {
+//				reg = <0xb00000 0x100000>;
+//			};
+
+//			flash0.kreserv@c00000 {
+//				reg = <0xd00000 0x100000>;
+//			};
+
+//			flash0.splash@d00000 {
+//				reg = <0xf00000 0x100000>;
+//			};
+
+//			flash0.initrd@f00000 {
+//				reg = <0x1100000 0x1000000>;
+//			};
+
+//			flash0.rootfs@1f00000 {
+//				reg = <0x2100000 0xdf00000>;
+//			};
+		};
+	};
+};

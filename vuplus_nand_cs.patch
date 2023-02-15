@@ -1,0 +1,13 @@
+diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+index 2e9c2e2d9c9f..fc92ca0d7b6a 100644
+--- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
++++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+@@ -2664,7 +2664,7 @@ static int brcmnand_setup_dev(struct brcmnand_host *host)
+ 	    (chip->ecc.strength != 1 || chip->ecc.size != 512)) {
+ 		dev_err(ctrl->dev, "invalid Hamming params: %d bits per %d bytes\n",
+ 			chip->ecc.strength, chip->ecc.size);
+-		return -EINVAL;
++//		return -EINVAL;
+ 	}
+ 
+ 	if (chip->ecc.engine_type != NAND_ECC_ENGINE_TYPE_NONE &&
